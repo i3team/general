@@ -6,19 +6,19 @@ export default class BaseAction extends BaseConsumer {
     static propTypes = {
         renderContent: PropTypes.func.isRequired
     }
-    onClick() {
-        throw "not implemented onClick"
+    onAction() {
+        throw "not implemented onAction"
     }
     consumerContent() {
         const { renderContent } = this.props;
-        return renderContent(this.onClick);
+        return renderContent(this.onAction);
     }
 }
 ```
 - Giả sử cần một component để mở bệnh án, override hàm `onClick` 
 ```jsx
 export default class BenhAnModalCreator extends BaseAction {
-    onClick = () => {
+    onAction = () => {
         this.openModal(bla bla bla);
     }
 }
