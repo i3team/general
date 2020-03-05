@@ -15,7 +15,7 @@ export default class BaseAction extends BaseConsumer {
     }
 }
 ```
-- Giả sử cần một component để mở bệnh án, implement như sau 
+- Giả sử cần một component để mở bệnh án, override hàm `onClick` 
 ```jsx
 export default class BenhAnModalCreator extends BaseAction {
     onClick = () => {
