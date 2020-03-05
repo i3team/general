@@ -18,7 +18,7 @@ export default class BaseAction extends BaseConsumer {
 - Giả sử cần một component để mở bệnh án, implement như sau 
 ```jsx
 export default class BenhAnModalCreator extends BaseAction {
-    onClick() {
+    onClick = () => {
         this.openModal(bla bla bla);
     }
 }
