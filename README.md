@@ -15,10 +15,10 @@ export default class BaseAction extends BaseConsumer {
     }
 }
 ```
-- Giả sử cần một component để mở bệnh án, override hàm `onClick` 
+- Giả sử cần một component để mở bệnh án, override hàm `onAction` 
 ```jsx
 export default class BenhAnModalCreator extends BaseAction {
-    onAction = () => {
+    onAction(){
         this.openModal(bla bla bla);
     }
 }
