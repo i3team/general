@@ -122,3 +122,5 @@ Lưu ý: hàm `setData` có bản chất tương tự hàm `setState`, vì vậy
 
 ### 3. Lưu ý về Clone
 Khái niệm này được sử dụng khi cần render một component, component này nhận props từ bên ngoài và update các props đó nhưng chúng ta không muốn các props đó bị thay đổi ở bên ngoài component đó.
+
+### 4. Không được khai báo bằng `var`, khai báo bằng `let` và `const` 
