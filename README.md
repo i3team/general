@@ -118,6 +118,7 @@ class ProductHeader extends BaseConsumer {
 }
 ```
 Như VD trên, ở did mount của `Product` sử dụng `setData` để tạo ra data, gắn vào state của `BasePage`, vì vậy ở `ProductHeader` có thể update được data đó
+Lưu ý: hàm `setData` có bản chất tương tự hàm `setState`, vì vậy vị trí sử dụng hàm này tương tự `setState` tức không được sử dụng ở một số hàm như `render`, `constructor`, `componentDidUpdate`, ....
 
 ### 3. Lưu ý về Clone
 Khái niệm này được sử dụng khi cần render một component, component này nhận props từ bên ngoài và update các props đó nhưng chúng ta không muốn các props đó bị thay đổi ở bên ngoài component đó.
