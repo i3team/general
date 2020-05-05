@@ -150,12 +150,14 @@ this.ajaxPost({
     error: (xhr, status, err) => {
         // thay thế errorCallback ở bản cũ
     },
-    onUnauthorized: () => {
+    unAuthorized: () => {
         // được invoke khi user không có quyền (error code: 401)
     }
 })
 ```
-Thông thường, ở unsuccess và error thì chúng ta thường báo lỗi lên UI cho người dùng nhìn thấy, tuy nhiên việc làm này thường không được làm hoặc quên bởi dev, vì vậy nếu 2 hàm này không được implement ở parameter thì 2 hàm này vẫn tự động log ra error lên UI (muốn hiểu rõ thì có thể lên BasePage xem hàm _sendAjax).
+Thông thường, ở unsuccess và error thì chúng ta thường báo lỗi lên UI cho người dùng nhìn thấy, tuy nhiên việc làm này thường không được làm hoặc quên bởi dev, vì vậy nếu 2 hàm này không được implement ở parameter thì 2 hàm này vẫn tự động log ra error lên UI (muốn hiểu rõ thì có thể lên BasePage xem hàm _sendAjax)
+Default thì `unAuthorized` sẽ invoke hàm `this.onUnauthorized`, hàm sẽ có thể (nên) được override lại ở Root
+
 ```jsx
 this.ajaxPost({
     url: `/api/ControllerName/MethodName`,
@@ -166,6 +168,6 @@ this.ajaxPost({
 })
 ```
 
-Lưu ý: `data` ở `ajaxPost` từ giờ sẽ ko được `JSON.stringify` trước, mà để nguyên "cục" `data` vào. Cụ thể là `data` sẽ được stringify ở trên `BasePage` bằng hàm `this.JSONStringify`, hàm này có thể overwrite lại ở Root nếu muốn customize lại cách stringify
+Lưu ý: `data` ở `ajaxPost` từ giờ sẽ ko được `JSON.stringify` trước, mà để nguyên "cục" `data` vào. Cụ thể là `data` sẽ được stringify ở trên `BasePage` bằng hàm `this.JSONStringify`, hàm này có thể override lại ở Root nếu muốn customize lại cách stringify
 
 
