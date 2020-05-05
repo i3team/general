@@ -155,8 +155,8 @@ this.ajaxPost({
     }
 })
 ```
-Thông thường, ở unsuccess và error thì chúng ta thường báo lỗi lên UI cho người dùng nhìn thấy, tuy nhiên việc làm này thường không được làm hoặc quên bởi dev, vì vậy nếu 2 hàm này không được implement ở parameter thì 2 hàm này vẫn tự động log ra error lên UI (muốn hiểu rõ thì có thể lên BasePage xem hàm _sendAjax)
-Default thì `unAuthorized` sẽ invoke hàm `this.onUnauthorized`, hàm sẽ có thể (nên) được override lại ở Root
+- Thông thường, ở unsuccess và error thì chúng ta thường báo lỗi lên UI cho người dùng nhìn thấy, tuy nhiên việc làm này thường không được làm hoặc quên bởi dev, vì vậy nếu 2 hàm này không được implement ở parameter thì 2 hàm này vẫn tự động log ra error lên UI (muốn hiểu rõ thì có thể lên BasePage xem hàm _sendAjax)
+- Default thì `unAuthorized` sẽ invoke hàm `this.onUnauthorized`, hàm sẽ có thể (nên) được override lại ở Root
 
 ```jsx
 this.ajaxPost({
