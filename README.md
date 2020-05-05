@@ -149,6 +149,9 @@ this.ajaxPost({
     },
     error: (xhr, status, err) => {
         // thay thế errorCallback ở bản cũ
+    },
+    onUnauthorized: () => {
+        // được invoke khi user không có quyền (error code: 401)
     }
 })
 ```
