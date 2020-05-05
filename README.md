@@ -124,3 +124,45 @@ Lưu ý: hàm `setData` có bản chất tương tự hàm `setState`, vì vậy
 Khái niệm này được sử dụng khi cần render một component, component này nhận props từ bên ngoài và update các props đó nhưng chúng ta không muốn các props đó bị thay đổi ở bên ngoài component đó.
 
 ### 4. Không được khai báo bằng `var`, khai báo bằng `let` và `const` 
+
+### 5. DisplayName
+Các component cần có thêm biến static displayName là các component kế thừa StateWrapper, nếu không kế thừa thì không cần
+```jsx
+import StateWrapper from 'BaseComponent/StateWrapper';
+class Item extends StateWrapper {
+    // code
+}
+Item.displayName = "OrAbcXyzWhateverAsLongAsIt'sUnique"
+```
+### 6. Ajax Post/Get
+Hai phương thức ajax get và ajax post đã được đưa lên BasePage nhằm đơn giản hóa cách sử dụng, cụ thể:
+```jsx
+// hàm get là this.ajaxGet
+this.ajaxPost({ 
+    url: `/api/ControllerName/MethodName`,
+    data: data,
+    success: ack => {
+        // thay thế successCallback ở bản cũ
+    },
+    unsuccess: ack => {
+        // thay thế unsuccessFunction ở bản cũ
+    },
+    error: (xhr, status, err) => {
+        // thay thế errorCallback ở bản cũ
+    }
+})
+```
+Thông thường, ở unsuccess và error thì chúng ta thường báo lỗi lên UI cho người dùng nhìn thấy, tuy nhiên việc làm này thường không được làm hoặc quên bởi dev, vì vậy nếu 2 hàm này không được implement ở parameter thì 2 hàm này vẫn tự động log ra error lên UI (muốn hiểu rõ thì có thể lên BasePage xem hàm _sendAjax).
+```jsx
+this.ajaxPost({
+    url: `/api/ControllerName/MethodName`,
+    data: data,
+    success: ack => {
+        // thay thế successCallback ở bản cũ
+    }
+})
+```
+
+Lưu ý: `data` ở `ajaxPost` từ giờ sẽ ko được `JSON.stringify` trước, mà để nguyên "cục" `data` vào. Cụ thể là `data` sẽ được stringify ở trên `BasePage` bằng hàm `this.JSONStringify`, hàm này có thể overwrite lại ở Root nếu muốn customize lại cách stringify
+
+
