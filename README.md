@@ -170,4 +170,43 @@ this.ajaxPost({
 
 Lưu ý: `data` ở `ajaxPost` từ giờ sẽ ko được `JSON.stringify` trước, mà để nguyên "cục" `data` vào. Cụ thể là `data` sẽ được stringify ở trên `BasePage` bằng hàm `this.JSONStringify`, hàm này có thể override lại ở Root nếu muốn customize lại cách stringify
 
+### PopoverManager
+Dùng mở một [Popover](https://material-ui.com/components/popover)
+```jsx
+_testPopover = (e) => {
+	let target = e.currentTarget
+	let popoverFunc = () => ({
+		body: (
+			<TestPopover data={this.props.data.testPopoverData} />
+		),
+		anchorEl: target,
+		clickAwayClose: true,
+	})
+	this.openPopover(popoverFunc);
+}
+
+render(){
+	return (
+		<div>
+			<span onClick={this._testPopover}>click vào đây để mở popover</span>
+		</div>
+	)
+}
+```
+Hàm `openPopover(popoverFunction: object) : string` trả về `id` của popover (dùng để tắt) và nhận vào parameter là `popoverFunction` là function trả về object với shape như sau:
+Property name | Type | Default | Description
+:--- | :--- | :--- | :---
+`body` | node | | tương tự body của modal function
+`anchorEl` | element | | "cái neo" để popover "bám" vào
+`onCloseCallback` | func | | hàm được gọi sau khi popover tắt
+`clickAwayClose` | boolean | false | `true` nếu muốn popover tự tắt khi click ra ngoài hoặc nhấn ESC
+`anchorOrigin` | object | `{ vertical: 'bottom', horizontal: 'center' }` | Xem và chọn giá trị mong muốn ở [play ground của MUI](https://material-ui.com/components/popover/#anchor-playground)
+`transformOrigin` | object | `{ vertical: 'top', horizontal: 'center' }` | Xem và chọn giá trị mong muốn ở [play ground của MUI](https://material-ui.com/components/popover/#anchor-playground)
+
+Hàm `closePopover(popoverId?: null, callback?: null)` có parameter là `popoverId` là `id` ở popover trả về ở hàm `openPopover`
+
+Ngoài ra, component truyền vào `body` ở `popoverFunction` sẽ tự động nhận được 1 prop là `popoverId`.
+
+
+
 
