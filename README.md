@@ -170,7 +170,7 @@ this.ajaxPost({
 
 Lưu ý: `data` ở `ajaxPost` từ giờ sẽ ko được `JSON.stringify` trước, mà để nguyên "cục" `data` vào. Cụ thể là `data` sẽ được stringify ở trên `BasePage` bằng hàm `this.JSONStringify`, hàm này có thể override lại ở Root nếu muốn customize lại cách stringify
 
-### PopoverManager
+### 7. PopoverManager
 Dùng mở một [Popover](https://material-ui.com/components/popover)
 ```jsx
 _testPopover = (e) => {
