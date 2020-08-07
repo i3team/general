@@ -193,20 +193,43 @@ render(){
 	)
 }
 ```
-Hàm `openPopover(popoverFunction: object) : string` trả về `id` của popover (dùng để tắt) và nhận vào parameter là `popoverFunction` là function trả về object với shape như sau:
+Hàm `openPopover(popoverFunction: object) : string` trả về id của popover (dùng để tắt) và nhận vào parameter là `popoverFunction` là function trả về object với shape như sau:
 Property name | Type | Default | Description
 :--- | :--- | :--- | :---
 `body` | node | | tương tự body của modal function
 `anchorEl` | element | | "cái neo" để popover "bám" vào
 `onCloseCallback` | func | | hàm được gọi sau khi popover tắt
 `clickAwayClose` | boolean | false | `true` nếu muốn popover tự tắt khi click ra ngoài hoặc nhấn ESC
-`anchorOrigin` | object | `{ vertical: 'bottom', horizontal: 'center' }` | Xem và chọn giá trị mong muốn ở [play ground của MUI](https://material-ui.com/components/popover/#anchor-playground)
-`transformOrigin` | object | `{ vertical: 'top', horizontal: 'center' }` | Xem và chọn giá trị mong muốn ở [play ground của MUI](https://material-ui.com/components/popover/#anchor-playground)
 
 Hàm `closePopover(popoverId?: null, callback?: null)` có parameter là `popoverId` là `id` ở popover trả về ở hàm `openPopover`
 
 Ngoài ra, component truyền vào `body` ở `popoverFunction` sẽ tự động nhận được 1 prop là `popoverId`.
 
+### 8. DrawerManager
+Dùng mở một [Drawer](https://material-ui.com/components/drawers/)
+```jsx
+_testDrawer = () => {
+	let drawerFunc = () => ({
+		body: <TestDrawer data={this.props.data.testPopoverData} />
+	})
+	this.openDrawer(drawerFunc);
+}
 
+render(){
+	return (
+		<div>
+			<span onClick={this._testDrawer}>click vào đây để mở drawer</span>
+		</div>
+	)
+}
+```
+Hàm `openDrawer(drawerFunction: object) : string` trả về id của drawer (dùng để tắt) và nhận vào parameter là `drawerFunction` là function trả về object với shape như sau:
+Property name | Type | Default | Description
+:--- | :--- | :--- | :---
+`body` | node | | tương tự body của modal function
+
+Hàm `closeDrawer(drawerId?: null, callback?: null)` có parameter là `drawerId` là id ở drawer trả về ở hàm `openDrawer`
+
+Ngoài ra, component truyền vào `body` ở `drawerFunction` sẽ tự động nhận được 1 prop là `drawerId`.
 
 
