@@ -171,18 +171,19 @@ this.ajaxPost({
 Lưu ý: `data` ở `ajaxPost` từ giờ sẽ ko được `JSON.stringify` trước, mà để nguyên "cục" `data` vào. Cụ thể là `data` sẽ được stringify ở trên `BasePage` bằng hàm `this.JSONStringify`, hàm này có thể override lại ở Root nếu muốn customize lại cách stringify
 
 ### 7. PopoverManager
-Dùng mở một [Popover](https://material-ui.com/components/popover)
+Dùng mở một [Popper](https://material-ui.com/components/popper/)
 ```jsx
-_testPopover = (e) => {
+_testPopup = (e) => {
 	let target = e.currentTarget
-	let popoverFunc = () => ({
+	let popupFunc = () => ({
 		body: (
 			<TestPopover data={this.props.data.testPopoverData} />
 		),
 		anchorEl: target,
 		clickAwayClose: true,
+            	placement: "bottom-end"
 	})
-	this.openPopover(popoverFunc);
+	this.openPopup(popupFunc);
 }
 
 render(){
@@ -193,17 +194,18 @@ render(){
 	)
 }
 ```
-Hàm `openPopover(popoverFunction: object) : string` trả về id của popover (dùng để tắt) và nhận vào parameter là `popoverFunction` là function trả về object với shape như sau:
+Hàm `openPopup(popoverFunction: object) : string` trả về id của popup (dùng để tắt) và nhận vào parameter là `popupFunc` là function trả về object với shape như sau:
 Property name | Type | Default | Description
 :--- | :--- | :--- | :---
 `body` | node | | tương tự body của modal function
-`anchorEl` | element | | "cái neo" để popover "bám" vào
-`onCloseCallback` | func | | hàm được gọi sau khi popover tắt
+`anchorEl` | element | | "cái neo" để popup "bám" vào
+`onCloseCallback` | func | | hàm được gọi sau khi popup tắt
 `clickAwayClose` | boolean | false | `true` nếu muốn popover tự tắt khi click ra ngoài hoặc nhấn ESC
+`placement` | string | "bottom" | xem [Prop placement](https://material-ui.com/api/popper/#props) của Popper
 
-Hàm `closePopover(popoverId?: null, callback?: null)` có parameter là `popoverId` là `id` ở popover trả về ở hàm `openPopover`
+Hàm `closePopup(popupId?: null, callback?: null)` có parameter là `popupId` là `id` ở popup trả về ở hàm `openPopup`
 
-Ngoài ra, component truyền vào `body` ở `popoverFunction` sẽ tự động nhận được 1 prop là `popoverId`.
+Ngoài ra, component truyền vào `body` ở `popupFunc` sẽ tự động nhận được 1 prop là `popupId`.
 
 ### 8. DrawerManager
 Dùng mở một [Drawer](https://material-ui.com/components/drawers/)
