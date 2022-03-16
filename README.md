@@ -5,7 +5,7 @@ Ví dụ: open một modal bệnh án thì mỗi trang sẽ có cách hiển th�
 export default class BaseAction extends BaseConsumer {
     static propTypes = {
         renderContent: PropTypes.func.isRequired
-    }
+    } 
     onAction() {
         throw "not implemented onAction"
     }
